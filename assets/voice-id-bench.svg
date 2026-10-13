@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="420" rx="14" fill="#0b3959"/>
+  <text x="30" y="50" fill="#ffffff" font-size="24" font-weight="700">Voice identification, fixed by measurement</text>
+  <text x="30" y="76" fill="#b4cad8" font-size="16">Bench: a public meeting with ground truth (AMI ES2004a, 4 speakers), replayed exactly as production receives it.</text>
+
+  <!-- Panel 1: identities -->
+  <rect x="30" y="100" width="360" height="290" rx="12" fill="#12445d"/>
+  <text x="50" y="134" fill="#4fd1c4" font-size="13" font-weight="700" letter-spacing="1">SPEAKERS CREATED (IDEAL: 4)</text>
+  <text x="50" y="178" fill="#b4cad8" font-size="15">before</text>
+  <rect x="110" y="160" width="240" height="28" rx="4" fill="#f2c879"/>
+  <text x="340" y="180" text-anchor="end" fill="#0b3959" font-size="17" font-weight="700">40</text>
+  <text x="50" y="230" fill="#b4cad8" font-size="15">after</text>
+  <rect x="110" y="212" width="36" height="28" rx="4" fill="#4fd1c4"/>
+  <text x="156" y="232" fill="#ffffff" font-size="17" font-weight="700">6</text>
+  <line x1="134" y1="150" x2="134" y2="252" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="134" y="270" text-anchor="middle" fill="#b4cad8" font-size="13">4 real speakers</text>
+  <line x1="50" y1="296" x2="370" y2="296" stroke="#2a5d78" stroke-width="1"/>
+  <text x="50" y="330" fill="#ffffff" font-size="17" font-weight="600">Purity 63 % → 76 %</text>
+  <text x="50" y="356" fill="#b4cad8" font-size="14">In production it had reached 107 labels</text>
+  <text x="50" y="376" fill="#b4cad8" font-size="14">for six people.</text>
+
+  <!-- Panel 2: accuracy steps -->
+  <rect x="410" y="100" width="400" height="290" rx="12" fill="#12445d"/>
+  <text x="430" y="134" fill="#4fd1c4" font-size="13" font-weight="700" letter-spacing="1">ACCURACY ON THE BENCH</text>
+  <text x="430" y="172" fill="#ffffff" font-size="15" font-weight="600">Original voice model</text>
+  <rect x="430" y="182" width="216" height="24" rx="4" fill="#2a5d78"/>
+  <text x="656" y="200" fill="#ffffff" font-size="16" font-weight="700">60 %</text>
+  <text x="430" y="238" fill="#ffffff" font-size="15" font-weight="600">Best of 4 models compared</text>
+  <rect x="430" y="248" width="259" height="24" rx="4" fill="#3d8f9a"/>
+  <text x="699" y="266" fill="#ffffff" font-size="16" font-weight="700">72 %</text>
+  <text x="430" y="304" fill="#ffffff" font-size="15" font-weight="600">+ ignore turns shorter than 1 s</text>
+  <rect x="430" y="314" width="302" height="24" rx="4" fill="#4fd1c4"/>
+  <text x="742" y="332" fill="#ffffff" font-size="16" font-weight="700">84 %</text>
+  <text x="430" y="370" fill="#b4cad8" font-size="14">29 % of turns last under a second; their voice print is noise.</text>
+
+  <!-- Panel 3: rejected -->
+  <rect x="830" y="100" width="340" height="290" rx="12" fill="#12445d" stroke="#f2c879" stroke-width="2"/>
+  <text x="850" y="134" fill="#f2c879" font-size="13" font-weight="700" letter-spacing="1">MEASURED, THEN REJECTED</text>
+  <text x="850" y="176" fill="#ffffff" font-size="17" font-weight="600">Largest model tested</text>
+  <text x="850" y="200" fill="#b4cad8" font-size="15">no gain, 18× the cost</text>
+  <text x="850" y="248" fill="#ffffff" font-size="17" font-weight="600">Re-clustering at the end</text>
+  <text x="850" y="272" fill="#b4cad8" font-size="15">live labels 64 % → 54 %: switched off</text>
+  <line x1="850" y1="300" x2="1150" y2="300" stroke="#2a5d78" stroke-width="1"/>
+  <text x="850" y="332" fill="#b4cad8" font-size="14">Known limit: two similar voices can</text>
+  <text x="850" y="352" fill="#b4cad8" font-size="14">still merge, so a speaker can be renamed</text>
+  <text x="850" y="372" fill="#b4cad8" font-size="14">once for the whole meeting.</text>
+</svg>
