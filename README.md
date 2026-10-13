@@ -1,92 +1,56 @@
-# Facilitateur
+# Meeting agent
 
-**A live meeting agent: it listens, attributes every turn to a speaker, writes the minutes as the meeting happens, and draws the system being described — while the room corrects it in place.**
+**A live meeting agent: it transcribes who said what, writes the minutes and draws the system being discussed while the meeting happens, and the people in the room correct it as it goes.**
 
-![Overview](assets/overview.jpg)
+![How the meeting agent works](assets/how-it-works.svg)
 
-*Above: a real meeting processed end to end. The transcript is the [AMI Meeting Corpus](https://groups.inf.ed.ac.uk/ami/corpus/) (ES2004b, functional design, four participants, 39 minutes, CC BY 4.0) — a public research recording, used here so the demonstration contains no client material.*
+## Why
 
----
+Transcription is solved; minutes are not. A summary written after the meeting arrives too late, and nobody who could correct it is still in the room. Here the minutes are built on screen during the meeting, anyone can edit any line, and the agent never overwrites what a person touched.
 
-## The problem
+## The product
 
-Meeting transcription is solved. Meeting *minutes* are not.
+**1. The live screen.** Attributed transcript on the left; minutes and diagram on the right, updated as people speak. One field advises without touching the minutes, the other gives the agent instructions it applies.
 
-A transcript is a wall of text nobody reads. An LLM summary written after the fact is unfalsifiable and arrives too late to change anything. And both share the same defect: they are produced *about* the meeting rather than *during* it, so the people who know the answer never get to correct them while it matters.
+![Live meeting screen](assets/live-meeting.png)
 
-Facilitateur inverts that. The minutes are built live, on screen, and anyone in the room can edit any line as it appears — with the guarantee that the agent will never overwrite what a human touched.
+**2. The share link.** Outsiders follow the minutes and the diagram live, read-only. The transcript, the attendee list and the cost never leave the room.
 
-## What it does
+<p align="center"><img src="assets/share-view.png" alt="Read-only share view" width="620"></p>
+
+<sub>A real run on a public research recording (AMI Meeting Corpus, ES2004b: four people designing a remote control, 39 minutes, CC BY 4.0), so the demonstration contains no client material. The interface is in French. The action owners (designer, marketing, coordinator) were inferred from the discussion: nobody states their role in the recording.</sub>
+
+## The evidence
+
+**Speaker identification was repaired by measurement, not by a bigger model.** In production it was creating more than a hundred voice labels for six people. The failure was reproduced on a public meeting with ground truth, then each fix was kept or dropped on the numbers.
+
+![Voice identification bench](assets/voice-id-bench.svg)
+
+<sub>The bench and its fixtures are versioned with the project so the measurement can be replayed.</sub>
+
+## Design principles
 
 | | |
 |---|---|
-| **Listens** | Captures each participant's microphone and the system audio of the video call, in 10-second windows. |
-| **Attributes** | Identifies remote speakers by voice, so every turn carries a name and a real timestamp. |
-| **Writes** | Maintains a structured record — a one-line summary, decisions, actions grouped by owner, open questions — continuously, not at the end. |
-| **Draws** | When someone describes a system, product or process, a diagram appears on its own. |
-| **Obeys** | Two separate agent channels: one that only advises, one that acts on the minutes when instructed. |
-| **Shares** | A read-only public link shows the live minutes and diagram to outsiders — never the transcript, the presence list, or the cost. |
-
-![Minutes](assets/minutes.jpg)
-
-The minutes above were produced from the transcript alone. Note that the actions are grouped under **Designer interface, Marketing, Coordinateur, Designer industriel** — roles the agent inferred from the discussion; nobody in the recording ever announces their job title.
-
-![Diagram](assets/diagram.jpg)
-
-The diagram was generated on request from the same conversation: sixteen components with named relations — *contains, powered by, integrates, recharges on, controls*.
-
-## Engineering decisions worth stealing
-
-**The human correction is law.** An item a person edits is flagged, and the summarising agent is structurally forbidden from rewriting it — enforced server-side, not by prompt. Without this, every regeneration silently undoes the room's work, and people stop trusting the screen within minutes.
-
-**Corrections become rules, not just edits.** Each human change is fed back into the next synthesis pass as an instruction that carries authority, with the agent told to generalise the implicit rule rather than patch the single line. The tool gets the room's style wrong once, not repeatedly.
-
-**Voice identification was fixed by measurement, not by a bigger model.** The live system was producing *107 identities for six people*. Rather than guess, the failure was reproduced on a public meeting with ground truth, remixed to match production conditions exactly — one microphone at a time, the way a video-call bridge transmits. Four embedding models were compared on identical audio. The verdict:
-
-| | identities (ideal: 4) | purity |
-|---|---|---|
-| before | **40** | 63 % |
-| after | **6** | 76 % |
-
-The single most profitable change was not the model but **discarding turns shorter than one second** — 29 % of all detected turns, whose voice prints are noise. That alone moved accuracy from 72 % to 84 %. The largest model tested (ResNet293) was rejected: no gain, eighteen times the cost.
-
-**The remaining limit is stated, not hidden.** Two similar voices still merge occasionally. On a mixed audio stream, voice alone plateaus — the next profitable step is letting a human rename a speaker once for the whole meeting, not buying a heavier model.
-
-**One template, no drift.** Every published page is served from a single root template; only the data is per-meeting. A visual fix is made once and propagates everywhere in one command.
-
-## Architecture
-
-```
-each phone's mic  ─┐
-video-call audio  ─┴─► 10s windows ─► transcription ─┬─► attributed turn ─► live screen
-                                     voice ID ───────┘
-                                                      │
-                                            structured minutes agent
-                                             (never overwrites edits)
-                                                      │
-                              ┌───────────────────────┼───────────────────┐
-                        live minutes            auto diagram        read-only share link
-                              │
-                    human edits ──► authority feedback ──► next synthesis pass
-```
-
-**Stack** — Node.js + WebSocket in Docker behind Traefik · Whisper large-v3 for transcription · a separate voice-identification service (3D-Speaker embeddings, ONNX runtime) · live cost accounting per meeting · PDF export.
+| **The human edit is final** | An edited line is locked on the server; no prompt can undo it. |
+| **Corrections become rules** | Each edit is fed back to the agent as an instruction to generalise, so a mistake is made once. |
+| **Advise and act are separate** | One channel only answers questions; only the other may change the minutes. |
+| **Measure before changing** | Speaker identification is tuned on a replayable bench, never on impressions. |
+| **State the limits** | Two similar voices can still merge, so a speaker can be renamed once for the whole meeting. |
 
 ## Status
 
-In production, used for real meetings. The measurement bench for voice identification is versioned with the project, including the fixtures and the commands to replay it.
+Used for real meetings since summer 2026. Private service; a live demonstration is available on request.
+
+<sub>Stack: Node.js and WebSocket in Docker behind Traefik · Whisper large-v3 for transcription · a separate speaker-identification service (3D-Speaker embeddings on ONNX Runtime) · live cost tracking per meeting · PDF export.</sub>
 
 ## Why the source is not here
 
-The running system is private. This repository documents what it does, how it is built, and the reasoning behind the decisions that mattered.
-
-Happy to walk through any of it in detail with anyone evaluating a collaboration.
+The running system is private. This page shows what it does, how it is built and the reasoning behind the decisions that mattered. Happy to walk through any of it in detail with anyone evaluating a collaboration.
 
 ---
 
-**Anthony Hunt** — independent consultant, applied agentic AI.
-Multi-agent systems in production · LLM orchestration · AI × immersive.
-📧 [anthony.hunt@yahoo.fr](mailto:anthony.hunt@yahoo.fr)
+**Anthony Hunt** — applied agentic AI: evaluating, training and deploying specialised agents.
+[GitHub profile](https://github.com/anthohunt) · [anthony.hunt@yahoo.fr](mailto:anthony.hunt@yahoo.fr)
 
-Demonstration data: AMI Meeting Corpus, University of Edinburgh, licensed CC BY 4.0.
-© 2026 Anthony Hunt. The described system is proprietary.
+<sub>Demonstration data: AMI Meeting Corpus, University of Edinburgh, CC BY 4.0. © 2026 Anthony Hunt. The described system is proprietary.</sub>

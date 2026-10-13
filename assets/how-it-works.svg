@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4fd1c4"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#f2c879"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="430" rx="14" fill="#0b3959"/>
+
+  <text x="30" y="50" fill="#ffffff" font-size="24" font-weight="700">Meeting agent</text>
+  <text x="30" y="76" fill="#b4cad8" font-size="16">The minutes are written during the meeting, and the room corrects them as they appear.</text>
+
+  <!-- 1. Audio -->
+  <rect x="30" y="120" width="190" height="140" rx="12" fill="#12445d" stroke="#4fd1c4" stroke-width="2"/>
+  <g transform="translate(108,134)" fill="none" stroke="#4fd1c4" stroke-width="3">
+    <rect x="6" y="0" width="12" height="20" rx="6"/><path d="M0 14 a12 12 0 0 0 24 0 M12 26 v6"/>
+  </g>
+  <text x="125" y="196" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="600">The room</text>
+  <text x="125" y="222" text-anchor="middle" fill="#b4cad8" font-size="15">each person's mic</text>
+  <text x="125" y="244" text-anchor="middle" fill="#b4cad8" font-size="15">+ video-call audio</text>
+
+  <line x1="222" y1="190" x2="272" y2="190" stroke="#4fd1c4" stroke-width="3" marker-end="url(#a)"/>
+
+  <!-- 2. Transcribe + voice ID -->
+  <rect x="276" y="120" width="210" height="140" rx="12" fill="#12445d" stroke="#4fd1c4" stroke-width="2"/>
+  <g transform="translate(350,136)" fill="none" stroke="#4fd1c4" stroke-width="3" stroke-linecap="round">
+    <path d="M0 10 v8 M8 4 v20 M16 0 v28 M24 6 v16 M32 10 v8 M40 2 v24 M48 9 v10 M56 12 v4"/>
+  </g>
+  <text x="381" y="196" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="600">Who said what</text>
+  <text x="381" y="222" text-anchor="middle" fill="#b4cad8" font-size="15">transcribed every 10 s</text>
+  <text x="381" y="244" text-anchor="middle" fill="#b4cad8" font-size="15">+ speaker identification</text>
+
+  <line x1="488" y1="190" x2="530" y2="190" stroke="#4fd1c4" stroke-width="3" marker-end="url(#a)"/>
+
+  <!-- 3. Minutes agent -->
+  <circle cx="640" cy="190" r="106" fill="#12445d" stroke="#4fd1c4" stroke-width="2"/>
+  <text x="640" y="140" text-anchor="middle" fill="#4fd1c4" font-size="13" font-weight="700" letter-spacing="1">MINUTES AGENT</text>
+  <text x="640" y="172" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Summary</text>
+  <text x="640" y="196" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Decisions</text>
+  <text x="640" y="220" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Actions by owner</text>
+  <text x="640" y="244" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Open questions</text>
+
+  <!-- outputs -->
+  <path d="M742 160 L862 132" fill="none" stroke="#4fd1c4" stroke-width="3" marker-end="url(#a)"/>
+  <line x1="748" y1="190" x2="862" y2="190" stroke="#4fd1c4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M742 220 L862 248" fill="none" stroke="#4fd1c4" stroke-width="3" marker-end="url(#a)"/>
+
+  <rect x="866" y="106" width="304" height="52" rx="10" fill="#1e5a52" stroke="#4fd1c4" stroke-width="2"/>
+  <text x="886" y="138" fill="#ffffff" font-size="17" font-weight="600">Live minutes</text>
+  <text x="1150" y="138" text-anchor="end" fill="#7fe0b5" font-size="14">editable by anyone</text>
+
+  <rect x="866" y="164" width="304" height="52" rx="10" fill="#1e5a52" stroke="#4fd1c4" stroke-width="2"/>
+  <text x="886" y="196" fill="#ffffff" font-size="17" font-weight="600">Diagram</text>
+  <text x="1150" y="196" text-anchor="end" fill="#7fe0b5" font-size="14">drawn on its own</text>
+
+  <rect x="866" y="222" width="304" height="52" rx="10" fill="#1e5a52" stroke="#4fd1c4" stroke-width="2"/>
+  <text x="886" y="254" fill="#ffffff" font-size="17" font-weight="600">Share link</text>
+  <text x="1150" y="254" text-anchor="end" fill="#7fe0b5" font-size="14">read-only, no transcript</text>
+
+  <!-- human correction loop -->
+  <rect x="866" y="320" width="304" height="76" rx="12" fill="#12445d" stroke="#f2c879" stroke-width="2"/>
+  <text x="1018" y="350" text-anchor="middle" fill="#f2c879" font-size="15" font-weight="700" letter-spacing="1">PARTICIPANTS</text>
+  <text x="1018" y="376" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="600">Correct any line, live</text>
+
+  <path d="M864 358 H640 V300" fill="none" stroke="#f2c879" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#g)"/>
+  <text x="850" y="384" text-anchor="end" fill="#f2c879" font-size="14">an edited line is locked: the agent never rewrites it,</text>
+  <text x="850" y="404" text-anchor="end" fill="#f2c879" font-size="14">and the correction becomes a rule for the next pass</text>
+</svg>
