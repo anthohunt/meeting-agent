@@ -51,6 +51,6 @@ The running system is private. This page shows what it does, how it is built and
 ---
 
 **Anthony Hunt** — applied agentic AI: evaluating, training and deploying specialised agents.
-[GitHub profile](https://github.com/anthohunt) · [anthony@ingevision.cloud](mailto:anthony@ingevision.cloud)
+[Project page on ingevision.cloud](https://ingevision.cloud/?lang=en&p=meeting-agent) · [LinkedIn](https://www.linkedin.com/in/anthony-hunt-3948a9196) · [GitHub profile](https://github.com/anthohunt) · [anthony@ingevision.cloud](mailto:anthony@ingevision.cloud)
 
 <sub>Demonstration data: AMI Meeting Corpus, University of Edinburgh, CC BY 4.0. © 2026 Anthony Hunt. The described system is proprietary.</sub>
