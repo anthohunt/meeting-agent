@@ -6,7 +6,7 @@
 
 [![Un passage dans le système : parole, transcription, identification des voix, compte-rendu, écrans en direct, lien de partage (cliquer pour la vidéo complète)](docs/demo.gif)](https://drive.google.com/file/d/1FN3gNw2EwRfOlKvlhFLsDuzwxr85LI55/view)
 
-<details><summary>Animation en français</summary>
+<details><summary>Version française</summary>
 
 [![Un passage dans le système : parole, transcription, identification des voix, compte-rendu, écrans en direct, lien de partage (cliquer pour la vidéo complète)](docs/demo.fr.gif)](https://drive.google.com/file/d/1R6aO1uMWa2q5uhz4WAEHl5KpXPpiFBeC/view)
 
