@@ -21,6 +21,12 @@
 
 ![Meeting agent architecture: the browser sends speech and edits to the Node.js server, which sends call audio to Groq Whisper, asks a voiceprint service who spoke, has Claude Haiku update the minutes every 15 seconds, saves one JSON file per meeting, and pushes the minutes live to participants and to a read-only share link](docs/architecture.svg)
 
+<details><summary>French version</summary>
+
+![Architecture de l'agent de réunion : le navigateur envoie parole et corrections au serveur Node.js, qui envoie le son de la visio à Groq Whisper, demande qui parle au service d'empreintes vocales, fait mettre à jour le compte-rendu par Claude Haiku toutes les 15 secondes, enregistre un fichier JSON par réunion et pousse le compte-rendu en direct aux participants et au lien de partage en lecture seule](docs/architecture.fr.svg)
+
+</details>
+
 ## Status
 
 - **Use.** Real meetings from summer to November 2026; project stopped on 3 November 2026, service offline.

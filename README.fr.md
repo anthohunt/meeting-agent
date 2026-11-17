@@ -19,7 +19,13 @@
 
 ## Architecture
 
+![Architecture de l'agent de réunion : le navigateur envoie parole et corrections au serveur Node.js, qui envoie le son de la visio à Groq Whisper, demande qui parle au service d'empreintes vocales, fait mettre à jour le compte-rendu par Claude Haiku toutes les 15 secondes, enregistre un fichier JSON par réunion et pousse le compte-rendu en direct aux participants et au lien de partage en lecture seule](docs/architecture.svg)
+
+<details><summary>Diagramme en français</summary>
+
 ![Architecture de l'agent de réunion : le navigateur envoie parole et corrections au serveur Node.js, qui envoie le son de la visio à Groq Whisper, demande qui parle au service d'empreintes vocales, fait mettre à jour le compte-rendu par Claude Haiku toutes les 15 secondes, enregistre un fichier JSON par réunion et pousse le compte-rendu en direct aux participants et au lien de partage en lecture seule](docs/architecture.fr.svg)
+
+</details>
 
 ## État
 
