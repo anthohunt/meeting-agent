@@ -4,15 +4,15 @@
 
 **Transcribes a meeting, tells the voices apart and keeps the minutes as it goes; the participants correct them live.**
 
-[![One pass through the system: speech in, transcript, voice labels, minutes, live screens, share link (click for the full video)](docs/demo.gif)](https://drive.google.com/file/d/1FN3gNw2EwRfOlKvlhFLsDuzwxr85LI55/view)
+![One pass through the system: speech in, transcript, voice labels, minutes, live screens, share link](docs/demo.gif)
 
 <details><summary>French version</summary>
 
-[![Un passage dans le système : parole, transcription, identification des voix, compte-rendu, écrans en direct, lien de partage (cliquer pour la vidéo complète)](docs/demo.fr.gif)](https://drive.google.com/file/d/1R6aO1uMWa2q5uhz4WAEHl5KpXPpiFBeC/view)
+![Un passage dans le système : parole, transcription, identification des voix, compte-rendu, écrans en direct, lien de partage](docs/demo.fr.gif)
 
 </details>
 
-*Real screens from a run on a public recording (AMI Meeting Corpus, CC BY 4.0). Interface in French. [Full video (1:12)](https://drive.google.com/file/d/1FN3gNw2EwRfOlKvlhFLsDuzwxr85LI55/view)*
+*Real screens from a run on a public recording (AMI Meeting Corpus, CC BY 4.0). Interface in French.*
 
 ## Using it
 
